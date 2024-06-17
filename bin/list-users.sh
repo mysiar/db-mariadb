@@ -1,0 +1,1 @@
+docker-compose exec db mysql -p -e "SELECT user,host FROM mysql.user"

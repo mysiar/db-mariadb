@@ -1,0 +1,21 @@
+networks:
+  default:
+    name: ${PROJECT_NAME}
+    ipam:
+      config:
+        - subnet: ${SUBNET}
+
+services:
+  db:
+    build: docker
+    container_name: "${PROJECT_NAME}_mariadb"
+    ports:
+      - "${LOCALHOST_MARIADB_PORT}:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DB_NAME}
+      - MARIADB_USER=${MARIADB_DB_USER}
+      - MARIADB_PASSWORD=${MARIADB_DB_PASS}
+    volumes:
+      - ${VOLUMES_DIR}/mariadb:/var/lib/mysql
+      - ${VOLUMES_DIR}/backup:/backup

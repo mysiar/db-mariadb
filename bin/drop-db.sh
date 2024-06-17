@@ -1,0 +1,1 @@
+docker-compose exec db mysql -p -e "DROP DATABASE IF EXISTS ${1}; DROP USER ${1}@'%'"
